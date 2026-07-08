@@ -1,0 +1,41 @@
+name: Python CI
+
+on:
+  push:
+    branches:
+      - main
+      - final-exam-submission
+
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  quality-checks:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set Up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run Flake8
+        run: |
+          flake8 src tests
+
+      - name: Run Bandit
+        run: |
+          bandit -r src
+
+      - name: Run Pytest with Coverage
+        run: |
+          pytest --cov=src --cov-fail-under=85
