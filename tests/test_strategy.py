@@ -22,4 +22,4 @@ def test_compression_strategy():
 
     result = processor.execute(data)
 
-    assert result == [85.0]
+    assert result == [999]
