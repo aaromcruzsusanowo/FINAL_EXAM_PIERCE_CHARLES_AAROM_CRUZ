@@ -58,3 +58,21 @@ Strategy Pattern was implemented to allow interchangeable data-processing algori
 - Confirmed Factory Pattern returns the correct service.
 - Confirmed Strategy Pattern delegates processing correctly.
 - Executed the program successfully.
+
+---
+
+# JWT Authentication Handshake
+
+The authentication service uses JSON Web Tokens (JWT) with the HS256 algorithm.
+
+Authentication Flow:
+
+1. User submits login credentials.
+2. Server validates the credentials.
+3. Server generates a JWT containing the username and expiration timestamp.
+4. The JWT is signed using the server's secret key.
+5. The client stores the JWT.
+6. Every protected request includes the JWT.
+7. The server verifies the signature and expiration before granting access.
+
+This approach ensures message integrity because any modification of the token invalidates its signature.
